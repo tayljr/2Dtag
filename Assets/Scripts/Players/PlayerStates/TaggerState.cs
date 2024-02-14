@@ -24,5 +24,6 @@ public class TaggerState : MonoBehaviour
 
     private void OnDisable()
     {
+	    weapon = null;
     }
 }

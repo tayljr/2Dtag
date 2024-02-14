@@ -19,7 +19,10 @@ public class TimerOnState : MonoBehaviour
 
 	void OnDisable()
 	{
-		GetComponent<TimerManager>().StopTimer();
-		timer.SetActive(false);
+		if(timer)
+		{
+			GetComponent<TimerManager>().StopTimer();
+			timer.SetActive(false);
+		}
 	}
 }

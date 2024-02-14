@@ -21,7 +21,7 @@ public class DeadState : MonoBehaviour
             playerMovement.enabled = false;
         }
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-        levelManager.GetComponent<GameManager>().NewDead();
+        levelManager.GetComponent<LevelManager>().NewDead();
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class DeadState : MonoBehaviour
     {
         if (levelManager != null)
         {
-            levelManager.GetComponent<GameManager>().NewAlive();
+            levelManager.GetComponent<LevelManager>().NewAlive();
         }
     }
 }

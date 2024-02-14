@@ -1,5 +1,5 @@
-interface IActionable
+public interface IActionable
 {
-	public void Activated();
-	public void Deactivated();
+	public void Activate();
+	public void Deactivate();
 }

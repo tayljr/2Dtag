@@ -8,7 +8,7 @@ public class StateManager : MonoBehaviour
     public MonoBehaviour currentState;
  
     // Set a default state
-    private void Start()
+    private void OnEnable()
     {
        ChangeState(startingState);
     }
