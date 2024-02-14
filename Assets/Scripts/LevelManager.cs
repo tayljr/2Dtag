@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class LevelManager : MonoBehaviour
     private bool hasWon = false;
     public MonoBehaviour timerOnState;
 	public MonoBehaviour timerOffState;
-	public MonoBehaviour TaggerWonState;
-	public MonoBehaviour TaggerLoseState;
+	public MonoBehaviour taggerWonState;
+	public MonoBehaviour taggerLoseState;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +26,13 @@ public class LevelManager : MonoBehaviour
 	    if (players.Count != 0)
 	    {
 		    gameObject.GetComponent<TimerManager>().StartTimer(time);
-		    players[currentTagger].transform.position = taggerSpawn.position;
+		    //players[currentTagger].transform.position = taggerSpawn.position;
 		    players[currentTagger].GetComponent<PlayerManager>().BecomeTagger();
 		    for (int i = 0; i < players.Count; i++)
 		    {
+				players[i].transform.position = runnerSpawns[i].position;
 			    if (i != currentTagger)
 			    {
-				    players[i].transform.position = runnerSpawns[i].position;
 				    players[i].GetComponent<PlayerManager>().BecomeRunner();
 			    }
 		    }
@@ -63,13 +64,13 @@ public class LevelManager : MonoBehaviour
 	    {
 		    Debug.Log("Tagger Has Won!");
 		    hasWon = true;
-		    GetComponent<StateManager>().ChangeState(TaggerWonState);
+		    GetComponent<StateManager>().ChangeState(taggerWonState);
 	    }
 	    if (gameObject.GetComponent<TimerManager>().TimerStatus())
 	    {
 		    Debug.Log("Runners Has Won!");
 		    hasWon = true;
-		    GetComponent<StateManager>().ChangeState(TaggerLoseState);
+		    GetComponent<StateManager>().ChangeState(taggerLoseState);
 	    }
     }
 }
