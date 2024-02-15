@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Button : SerializedMonoBehaviour
 {
-	public IActionable actionable;
+	public List<IActionable> actionables;
 	public int activateWeight;
 	public int deactivateWeight;
 	private int weight;
@@ -35,11 +32,18 @@ public class Button : SerializedMonoBehaviour
     {
 	    if (weight >= activateWeight && !isActive)
 	    {
-		    actionable.Activate();
+		    foreach (var actionable in actionables)
+		    {
+			    actionable.Activate();
+		    }
 		    isActive = true;
-	    } else if (weight <= deactivateWeight && isActive)
+	    } 
+	    else if (weight <= deactivateWeight && isActive)
 	    {
-		    actionable.Deactivate();
+		    foreach (var actionable in actionables)
+		    {
+			    actionable.Deactivate();
+		    }
 		    isActive = false;
 	    }
     }

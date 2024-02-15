@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour
     public List<GameObject> players;
     private int currentTagger;
     public List<Transform> runnerSpawns;
+    public List<Transform> activeSpawns;
+    private int currentSpawn;
 	public Transform taggerSpawn;
 	public int time = 30;
 	private int playersDead = 0;
@@ -21,16 +23,20 @@ public class LevelManager : MonoBehaviour
     {
 	    playersDead = 0;
 	    players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+	    if(activeSpawns != null)
+	    {
+		    activeSpawns.Clear();
+	    }
 	    currentTagger = Random.Range(0,players.Count);
 	    //print(players[currentTagger]);
+		gameObject.GetComponent<TimerManager>().StartTimer(time);
 	    if (players.Count != 0)
 	    {
-		    gameObject.GetComponent<TimerManager>().StartTimer(time);
 		    //players[currentTagger].transform.position = taggerSpawn.position;
 		    players[currentTagger].GetComponent<PlayerManager>().BecomeTagger();
 		    for (int i = 0; i < players.Count; i++)
 		    {
-				players[i].transform.position = runnerSpawns[i].position;
+				SpawnPlayers(i);
 			    if (i != currentTagger)
 			    {
 				    players[i].GetComponent<PlayerManager>().BecomeRunner();
@@ -47,7 +53,25 @@ public class LevelManager : MonoBehaviour
 		    WinCheck();
 	    }    
     }
-    
+
+    private void SpawnPlayers(int currentPlayer)
+    {
+		currentSpawn = Random.Range(0, players.Count);
+		if (activeSpawns == null)
+		{
+			players[currentPlayer].transform.position = runnerSpawns[currentSpawn].position;
+			activeSpawns.Add(runnerSpawns[currentSpawn]);
+		}
+		else if(!activeSpawns.Contains(runnerSpawns[currentSpawn]))
+		{
+			players[currentPlayer].transform.position = runnerSpawns[currentSpawn].position;
+			activeSpawns.Add(runnerSpawns[currentSpawn]);
+		}
+		else
+		{
+			SpawnPlayers(currentPlayer);
+		}
+    }
     public void NewDead()
     {
 	    playersDead++;
