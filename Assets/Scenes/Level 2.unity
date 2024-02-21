@@ -732,6 +732,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 2105787217002995899, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1403,11 +1407,9 @@ MonoBehaviour:
   - {fileID: 1931153642}
   activeSpawns: []
   taggerSpawn: {fileID: 1872797132}
-  time: 30
+  time: 5
   timerOnState: {fileID: 1288224378}
   timerOffState: {fileID: 1288224377}
-  taggerWonState: {fileID: 1288224376}
-  taggerLoseState: {fileID: 1288224375}
 --- !u!1 &1322938384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2393,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 2088631414093431128, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3084426
@@ -2435,6 +2441,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
+    - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 3473569752821533932, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_Name
       value: Players
@@ -2459,6 +2473,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: startingState
       value: 

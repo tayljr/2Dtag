@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TaggerLoseState : MonoBehaviour
+public class RunnerWinState : MonoBehaviour
 {
 	public GameObject runnerWinMenu;
 	void OnEnable()
@@ -14,7 +14,7 @@ public class TaggerLoseState : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-	    
+	    //
 	}
 
 	void OnDisable()

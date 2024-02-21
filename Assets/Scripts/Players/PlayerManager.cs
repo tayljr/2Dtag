@@ -9,10 +9,34 @@ public class PlayerManager : MonoBehaviour
     public MonoBehaviour runnerState;
     public MonoBehaviour deadState;
     
+    public LevelManager levelManager;
+    public PlayerMovement playerMovement;
+    
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+	    levelManager.LevelStart += StartGame;
+	    levelManager.TaggerWonEvent += TaggerWon;
+	    levelManager.RunnerWonEvent += RunnerWon;
+    }
+    void OnDisable()
+    {
+	    levelManager.LevelStart -= StartGame;
+	    levelManager.TaggerWonEvent -= TaggerWon;
+	    levelManager.RunnerWonEvent -= RunnerWon;
+    }
+
+    private void StartGame()
+    {
+	    
+    }
+
+    private void TaggerWon()
+    {
+	    playerMovement.enabled = false;
+    }private void RunnerWon()
+    {
+	    playerMovement.enabled = false;
     }
 
     // Update is called once per frame

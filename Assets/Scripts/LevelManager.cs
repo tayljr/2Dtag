@@ -16,12 +16,16 @@ public class LevelManager : MonoBehaviour
     private bool hasWon = false;
     public MonoBehaviour timerOnState;
 	public MonoBehaviour timerOffState;
-	public MonoBehaviour taggerWonState;
-	public MonoBehaviour taggerLoseState;
+	
+	public event SimpleEvent LevelStart;
+	public event SimpleEvent TaggerWonEvent;
+	public event SimpleEvent RunnerWonEvent;
+	
     // Start is called before the first frame update
     void Start()
     {
 	    playersDead = 0;
+	    LevelStart?.Invoke();
 	    players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
 	    if(activeSpawns != null)
 	    {
@@ -88,13 +92,15 @@ public class LevelManager : MonoBehaviour
 	    {
 		    Debug.Log("Tagger Has Won!");
 		    hasWon = true;
-		    GetComponent<StateManager>().ChangeState(taggerWonState);
+		    //tagger win event
+		    TaggerWonEvent?.Invoke();
 	    }
 	    if (gameObject.GetComponent<TimerManager>().TimerStatus())
 	    {
 		    Debug.Log("Runners Has Won!");
 		    hasWon = true;
-		    GetComponent<StateManager>().ChangeState(taggerLoseState);
+		    //runner win event
+		    RunnerWonEvent?.Invoke();
 	    }
     }
 }

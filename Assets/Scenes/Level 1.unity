@@ -1910,11 +1910,9 @@ MonoBehaviour:
   - {fileID: 1931153642}
   activeSpawns: []
   taggerSpawn: {fileID: 1872797132}
-  time: 30
+  time: 5
   timerOnState: {fileID: 1288224378}
   timerOffState: {fileID: 1288224377}
-  taggerWonState: {fileID: 1288224376}
-  taggerLoseState: {fileID: 1288224375}
 --- !u!1 &1333838054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,6 +3842,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 2105787217002995899, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

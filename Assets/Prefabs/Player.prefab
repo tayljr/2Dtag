@@ -199,6 +199,8 @@ MonoBehaviour:
   taggerState: {fileID: 787575114032993236}
   runnerState: {fileID: 3196420473096096474}
   deadState: {fileID: 8585146832506875801}
+  levelManager: {fileID: 0}
+  playerMovement: {fileID: 8155981292094251581}
 --- !u!114 &348979065908613462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,4 +252,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c28f374dba5f44fbdc0bb83ae5fc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelManager: {fileID: 0}
   playerMovement: {fileID: 8155981292094251581}
