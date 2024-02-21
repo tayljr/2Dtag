@@ -1910,7 +1910,7 @@ MonoBehaviour:
   - {fileID: 1931153642}
   activeSpawns: []
   taggerSpawn: {fileID: 1872797132}
-  time: 5
+  time: 30
   timerOnState: {fileID: 1288224378}
   timerOffState: {fileID: 1288224377}
 --- !u!1 &1333838054
@@ -3994,6 +3994,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 2088631414093431128, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3084426
@@ -4038,6 +4042,14 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
+    - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 3473569752821533932, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_Name
       value: Players
@@ -4062,6 +4074,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 1288224380}
     - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: startingState
       value: 

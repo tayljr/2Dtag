@@ -24,9 +24,6 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-        /*if (tagThing == null){
-            tagThing = GameObject.FindWithTag("TagThing");
-        }*/
     }
 
     // Update is called once per frame
@@ -59,10 +56,6 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyUp(downKey)){
             DownReleased();
         }
-
-        /*if(tagger){
-            BeTagger();
-        }*/
     }
 
     private bool IsGrounded()

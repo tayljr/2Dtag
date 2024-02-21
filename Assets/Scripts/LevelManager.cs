@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
 	public MonoBehaviour timerOffState;
 	
 	public event SimpleEvent LevelStart;
+	//public event BoolReturnEvent SetTagger;
 	public event SimpleEvent TaggerWonEvent;
 	public event SimpleEvent RunnerWonEvent;
 	
@@ -26,7 +27,10 @@ public class LevelManager : MonoBehaviour
     {
 	    playersDead = 0;
 	    LevelStart?.Invoke();
+	    
+	    //somehow in playerManger.StartGame()
 	    players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+	    
 	    if(activeSpawns != null)
 	    {
 		    activeSpawns.Clear();
@@ -58,6 +62,10 @@ public class LevelManager : MonoBehaviour
 	    }    
     }
 
+    public void SetPlayers(GameObject newPlayer)
+    {
+	    players.Add(newPlayer);
+    }
     private void SpawnPlayers(int currentPlayer)
     {
 		currentSpawn = Random.Range(0, players.Count);

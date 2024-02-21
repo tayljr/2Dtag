@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 7757697990795759565}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9284425, y: 6.014247, z: -0.1252166}
+  m_LocalPosition: {x: -9.08, y: 6.07, z: -0.1252166}
   m_LocalScale: {x: 2, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -230,6 +230,10 @@ PrefabInstance:
       propertyPath: m_SpriteSortPoint
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3196420473096096474, guid: d680a931286fe914eb8283f4b93767af, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 2783683824422912605}
     - target: {fileID: 4530902083479780398, guid: d680a931286fe914eb8283f4b93767af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.69
@@ -345,6 +349,10 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3196420473096096474, guid: d680a931286fe914eb8283f4b93767af, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 2783683824422912605}
     - target: {fileID: 4530902083479780398, guid: d680a931286fe914eb8283f4b93767af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6935263
@@ -439,6 +447,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3196420473096096474, guid: d680a931286fe914eb8283f4b93767af, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 2783683824422912605}
     - target: {fileID: 4530902083479780398, guid: d680a931286fe914eb8283f4b93767af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.31
@@ -521,6 +533,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 7757697990795759565}
+    - target: {fileID: 3196420473096096474, guid: d680a931286fe914eb8283f4b93767af, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 2783683824422912605}
     - target: {fileID: 4530902083479780398, guid: d680a931286fe914eb8283f4b93767af, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.98

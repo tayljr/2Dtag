@@ -11,9 +11,6 @@ public class TaggerState : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        if(weapon == null){
-            weapon = GameObject.FindWithTag("TagThing");
-        }
     }
 
     // Update is called once per frame
@@ -24,6 +21,5 @@ public class TaggerState : MonoBehaviour
 
     private void OnDisable()
     {
-	    weapon = null;
     }
 }

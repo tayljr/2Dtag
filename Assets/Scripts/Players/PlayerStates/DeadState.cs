@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 public class DeadState : MonoBehaviour
 {
-    [FormerlySerializedAs("gameManager")] public GameObject levelManager;
+	public GameObject levelManager;
     public MonoBehaviour playerMovement;
     // Start is called before the first frame update
     void OnEnable()

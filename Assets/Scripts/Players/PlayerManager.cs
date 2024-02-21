@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     private void StartGame()
     {
-	    
+	    levelManager.SetPlayers(gameObject);
     }
 
     private void TaggerWon()
