@@ -1777,6 +1777,7 @@ GameObject:
   - component: {fileID: 1288224377}
   - component: {fileID: 1288224376}
   - component: {fileID: 1288224375}
+  - component: {fileID: 1288224381}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: GameController
@@ -1897,7 +1898,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288224370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a59e204be34d1f45b70a42277a1a419, type: 3}
   m_Name: 
@@ -1913,6 +1914,18 @@ MonoBehaviour:
   time: 30
   timerOnState: {fileID: 1288224378}
   timerOffState: {fileID: 1288224377}
+--- !u!114 &1288224381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288224370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5458b59aa112e45ac287efa17a808b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333838054
 GameObject:
   m_ObjectHideFlags: 0
