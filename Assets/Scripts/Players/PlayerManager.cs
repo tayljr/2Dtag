@@ -9,26 +9,27 @@ public class PlayerManager : MonoBehaviour
     public MonoBehaviour runnerState;
     public MonoBehaviour deadState;
     
-    public LevelManager levelManager;
+    //public LevelManager levelManager;
+    public GameManager gameManager;
     public PlayerMovement playerMovement;
     
     // Start is called before the first frame update
     void OnEnable()
     {
-	    levelManager.LevelStart += StartGame;
-	    levelManager.TaggerWonEvent += TaggerWon;
-	    levelManager.RunnerWonEvent += RunnerWon;
+	    gameManager.LevelStart += StartGame;
+	    gameManager.TaggerWonEvent += TaggerWon;
+	    gameManager.RunnerWonEvent += RunnerWon;
     }
     void OnDisable()
     {
-	    levelManager.LevelStart -= StartGame;
-	    levelManager.TaggerWonEvent -= TaggerWon;
-	    levelManager.RunnerWonEvent -= RunnerWon;
+	    gameManager.LevelStart -= StartGame;
+	    gameManager.TaggerWonEvent -= TaggerWon;
+	    gameManager.RunnerWonEvent -= RunnerWon;
     }
 
     private void StartGame()
     {
-	    levelManager.SetPlayers(gameObject);
+	    gameManager.SetPlayers(gameObject);
     }
 
     private void TaggerWon()

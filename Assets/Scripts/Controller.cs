@@ -30,8 +30,8 @@ public class ControllerActionMapTest : MonoBehaviour
        // Note: I'm subscribing to cancelled also, so we get letting go values of zero
        mainControls.Main.Horizontal.performed += HorizontalOnperformed;
        mainControls.Main.Horizontal.canceled += HorizontalOnperformed;
-       mainControls.Main.Vertical.performed += VerticalOnperformed;
-       mainControls.Main.Vertical.canceled += VerticalOnperformed;
+       mainControls.Main.Jump.performed += VerticalOnperformed;
+       mainControls.Main.Jump.canceled += VerticalOnperformed;
       
        // Combined double axis using Vector2
        // Note: I'm subscribing to cancelled also, so we get letting go values of zero
@@ -49,8 +49,8 @@ public class ControllerActionMapTest : MonoBehaviour
        // Note: I'm subscribing to cancelled also, so we get letting go values of zero
        mainControls.Main.Horizontal.performed -= HorizontalOnperformed;
        mainControls.Main.Horizontal.canceled -= HorizontalOnperformed;
-       mainControls.Main.Vertical.performed -= VerticalOnperformed;
-       mainControls.Main.Vertical.canceled -= VerticalOnperformed;
+       mainControls.Main.Jump.performed -= VerticalOnperformed;
+       mainControls.Main.Jump.canceled -= VerticalOnperformed;
       
        // Note: I'm subscribing to cancelled also, so we get letting go values of zero
        //mainControls.Main.Movement.performed -= MovementOnperformed;
@@ -67,7 +67,7 @@ public class ControllerActionMapTest : MonoBehaviour
    private void VerticalOnperformed(InputAction.CallbackContext obj)
    {
 	   // Note: How did I know this is a float? Because in the ActionMap editor the 'Action Type' is set to 'Value' and the 'Control Type' is set to 'Axis'
-	   Debug.Log(obj.ReadValue<float>());
+       Debug.Log(obj.performed);
    }
   
    private void MovementOnperformed(InputAction.CallbackContext obj)

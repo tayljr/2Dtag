@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
+    public GameManager gameManager;
     public MonoBehaviour menuOnState;
     public MonoBehaviour menuOffState;
     public MonoBehaviour optionsOnState;
@@ -24,12 +25,14 @@ public class MenuController : MonoBehaviour
             if (!menuOn)
             {
                 GetComponent<StateManager>().ChangeState(menuOnState);
+                gameManager?.GamePause();
                 menuOn = true;
             } 
             else if (menuOn)
             {
                 GetComponent<StateManager>().ChangeState(optionsOffState);
                 GetComponent<StateManager>().ChangeState(menuOffState);
+                gameManager?.GamePlay();
                 menuOn = false;
             }
     }

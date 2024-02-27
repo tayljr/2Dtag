@@ -7,29 +7,28 @@ using UnityEngine.Serialization;
 public class WinUI : MonoBehaviour
 {
 	public MonoBehaviour taggerWonState;
-	[FormerlySerializedAs("taggerLoseState")]
 	public MonoBehaviour runnerWinState;
-	
-	public LevelManager levelManager;
+	public GameManager gameManager;
+	public StateManager stateManager;
 	
     // Start is called before the first frame update
     void OnEnable()
     {
-	    levelManager.TaggerWonEvent += TaggerWon;
-	    levelManager.RunnerWonEvent += RunnerWon;
+	    gameManager.TaggerWonEvent += TaggerWon;
+	    gameManager.RunnerWonEvent += RunnerWon;
     }
 
     private void OnDisable()
     {
-	    levelManager.TaggerWonEvent -= TaggerWon;
+	    gameManager.TaggerWonEvent -= TaggerWon;
     }
 
     private void TaggerWon()
     {
-	    GetComponent<StateManager>().ChangeState(taggerWonState);
+	    stateManager.ChangeState(taggerWonState);
     }
     private void RunnerWon()
     {
-	    GetComponent<StateManager>().ChangeState(runnerWinState);
+	    stateManager.ChangeState(runnerWinState);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class RunnerState : MonoBehaviour
 {
 	public Collider2D weapon;
+    
     // Start is called before the first frame update
     void OnEnable()
     {

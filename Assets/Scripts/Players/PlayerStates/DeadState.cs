@@ -7,21 +7,17 @@ using UnityEngine.Serialization;
 
 public class DeadState : MonoBehaviour
 {
-	public GameObject levelManager;
+	public GameManager gameManager;
     public MonoBehaviour playerMovement;
     // Start is called before the first frame update
     void OnEnable()
     {
-        if (levelManager == null)
-        {
-            levelManager = GameObject.FindGameObjectWithTag("GameController");
-        }
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
         }
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-        levelManager.GetComponent<LevelManager>().NewDead();
+        gameManager.NewDead();
     }
 
     // Update is called once per frame
@@ -32,9 +28,9 @@ public class DeadState : MonoBehaviour
 
     private void OnDisable()
     {
-        if (levelManager != null)
+        if (gameManager != null)
         {
-            levelManager.GetComponent<LevelManager>().NewAlive();
+            gameManager.NewAlive();
         }
     }
 }

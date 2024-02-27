@@ -1537,6 +1537,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &915396980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6014056654373544310, guid: d37931e2729dfd943845412743b33692, type: 3}
+  m_PrefabInstance: {fileID: 3474409940691656741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f739447163f45848804d8f394c9ad09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &925184744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,7 +1781,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1288224372}
   - component: {fileID: 1288224373}
-  - component: {fileID: 1288224380}
   - component: {fileID: 1288224379}
   - component: {fileID: 1288224374}
   - component: {fileID: 1288224378}
@@ -1779,7 +1789,7 @@ GameObject:
   - component: {fileID: 1288224375}
   - component: {fileID: 1288224381}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: GameManger
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1812,6 +1822,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41093b9f5f157e4691dd09c660c3377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  runnerSpawns:
+  - {fileID: 925184745}
+  - {fileID: 1554372731}
+  - {fileID: 1392491142}
+  - {fileID: 1931153642}
+  activeSpawns: []
+  taggerSpawn: {fileID: 1872797132}
+  time: 30
+  timerManger: {fileID: 1288224374}
+  timerOnState: {fileID: 1288224378}
+  timerOffState: {fileID: 1288224377}
 --- !u!114 &1288224374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1825,6 +1847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerUI: {fileID: 621937026}
+  gameManager: {fileID: 1288224373}
 --- !u!114 &1288224375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,29 +1914,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 1288224378}
   currentState: {fileID: 0}
---- !u!114 &1288224380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288224370}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a59e204be34d1f45b70a42277a1a419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
-  runnerSpawns:
-  - {fileID: 925184745}
-  - {fileID: 1554372731}
-  - {fileID: 1392491142}
-  - {fileID: 1931153642}
-  activeSpawns: []
-  taggerSpawn: {fileID: 1872797132}
-  time: 30
-  timerOnState: {fileID: 1288224378}
-  timerOffState: {fileID: 1288224377}
 --- !u!114 &1288224381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3856,9 +3856,17 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: levelManager
       value: 
-      objectReference: {fileID: 1288224380}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 915396980}
     - target: {fileID: 2105787217002995899, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3898,6 +3906,10 @@ PrefabInstance:
     - target: {fileID: 6015194229770893268, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745818225988470313, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7447139392747838228, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_Pivot.x
@@ -4007,10 +4019,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 260228435701750991, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
-      objectReference: {fileID: 1288224380}
+      objectReference: {fileID: 0}
     - target: {fileID: 2088631414093431128, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3084426
@@ -4056,13 +4076,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
-      objectReference: {fileID: 1288224380}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
-      objectReference: {fileID: 1288224380}
+      objectReference: {fileID: 0}
     - target: {fileID: 3473569752821533932, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_Name
       value: Players
@@ -4075,6 +4103,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5392674325640430370, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 5401311712529473818, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 6889012254631054817, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4088,13 +4124,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
-      objectReference: {fileID: 1288224380}
+      objectReference: {fileID: 0}
     - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: startingState
       value: 
       objectReference: {fileID: 732020493}
+    - target: {fileID: 9191118595165707714, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4164,6 +4208,10 @@ PrefabInstance:
       propertyPath: optionsMenu
       value: 
       objectReference: {fileID: 1369221729}
+    - target: {fileID: 7520537668072637072, guid: ffc57d86e107d434ea0f3f13bb8d719b, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 7851291750561454789, guid: ffc57d86e107d434ea0f3f13bb8d719b, type: 3}
       propertyPath: m_Name
       value: PauseControlls

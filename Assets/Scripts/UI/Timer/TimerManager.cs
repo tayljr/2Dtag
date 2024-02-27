@@ -8,6 +8,18 @@ public class TimerManager : MonoBehaviour
     private bool timesUp = false;
     private bool timerStopped = false;
     public TMP_Text timerUI;
+    public GameManager gameManager;
+    
+    void OnEnable()
+    {
+        gameManager.PauseGame += StopTimer;
+        gameManager.PlayGame += PlayTimer;
+    }
+    void OnDisable()
+    {
+        gameManager.PauseGame -= StopTimer;
+        gameManager.PlayGame -= PlayTimer;
+    }
 
     public void StartTimer(int setTime)
     {
@@ -22,9 +34,15 @@ public class TimerManager : MonoBehaviour
         timerStopped = true;
     }
 
+    public void PlayTimer()
+    {
+        timerStopped = false;
+        StartCoroutine(Countdown());
+    }
+
     private IEnumerator Countdown()
     {
-        Debug.Log("Timer is set for " + timer + " seconds.");
+        //Debug.Log("Timer is set for " + timer + " seconds.");
         while (timer > 0)
         {
             yield return new WaitForSeconds(1.0f);
@@ -32,7 +50,7 @@ public class TimerManager : MonoBehaviour
             timerUI.text = timer.ToString();
             //Debug.Log("Time left: " + ((int)timer));
         }
-        Debug.Log("Time is up.");
+        //Debug.Log("Time is up.");
         timesUp = true;
         StopAllCoroutines();
     }

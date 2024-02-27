@@ -733,9 +733,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1288224380}
+    - target: {fileID: 1529989373557021660, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 643822181}
     - target: {fileID: 2105787217002995899, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -899,6 +907,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2052723380318283703, guid: d37931e2729dfd943845412743b33692, type: 3}
   m_PrefabInstance: {fileID: 573528656}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &643822181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6014056654373544310, guid: d37931e2729dfd943845412743b33692, type: 3}
+  m_PrefabInstance: {fileID: 573528656}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f739447163f45848804d8f394c9ad09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &732020493 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9103484074106740866, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
@@ -1275,7 +1294,7 @@ GameObject:
   - component: {fileID: 1288224376}
   - component: {fileID: 1288224375}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: GameManager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1308,6 +1327,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f41093b9f5f157e4691dd09c660c3377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
+  runnerSpawns:
+  - {fileID: 925184745}
+  - {fileID: 1554372731}
+  - {fileID: 1392491142}
+  - {fileID: 1931153642}
+  activeSpawns: []
+  taggerSpawn: {fileID: 1872797132}
+  time: 30
+  timerManger: {fileID: 1288224374}
+  timerOnState: {fileID: 1288224378}
+  timerOffState: {fileID: 1288224377}
 --- !u!114 &1288224374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,6 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerUI: {fileID: 1529115529}
+  gameManager: {fileID: 1288224373}
 --- !u!114 &1288224375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1399,17 +1431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a59e204be34d1f45b70a42277a1a419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
-  runnerSpawns:
-  - {fileID: 925184745}
-  - {fileID: 1554372731}
-  - {fileID: 1392491142}
-  - {fileID: 1931153642}
-  activeSpawns: []
-  taggerSpawn: {fileID: 1872797132}
-  time: 5
-  timerOnState: {fileID: 1288224378}
-  timerOffState: {fileID: 1288224377}
 --- !u!1 &1322938384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2414,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 260228435701750991, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 1771210101821452715, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
@@ -2442,9 +2471,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 3300948466604879691, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1288224380}
+    - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 3309200133207985523, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
@@ -2461,6 +2498,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5392674325640430370, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 5401311712529473818, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 6889012254631054817, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -2474,6 +2519,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
+    - target: {fileID: 7243327501161017510, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1288224380}
@@ -2481,6 +2530,10 @@ PrefabInstance:
       propertyPath: startingState
       value: 
       objectReference: {fileID: 732020493}
+    - target: {fileID: 9191118595165707714, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2838,6 +2891,10 @@ PrefabInstance:
       propertyPath: optionsMenu
       value: 
       objectReference: {fileID: 1716601564}
+    - target: {fileID: 7520537668072637072, guid: ffc57d86e107d434ea0f3f13bb8d719b, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1288224373}
     - target: {fileID: 7851291750561454789, guid: ffc57d86e107d434ea0f3f13bb8d719b, type: 3}
       propertyPath: m_Name
       value: PauseControlls
