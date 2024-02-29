@@ -1771,6 +1771,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1184762257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 260228435701750991, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+  m_PrefabInstance: {fileID: 4187972398489327795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c28f374dba5f44fbdc0bb83ae5fc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1184762258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6405212207146924428, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+  m_PrefabInstance: {fileID: 4187972398489327795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60f051341ceab741a4a6156fa91ce6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1288224370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,6 +1936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 1288224378}
   currentState: {fileID: 0}
+  states: []
 --- !u!114 &1288224381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4135,6 +4158,22 @@ PrefabInstance:
       propertyPath: startingState
       value: 
       objectReference: {fileID: 732020493}
+    - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: states.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: states.Array.data[0]
+      value: 
+      objectReference: {fileID: 732020493}
+    - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: states.Array.data[1]
+      value: 
+      objectReference: {fileID: 1184762258}
+    - target: {fileID: 8101913539718341120, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
+      propertyPath: states.Array.data[2]
+      value: 
+      objectReference: {fileID: 1184762257}
     - target: {fileID: 9191118595165707714, guid: 798b98f0ce024c94f90ffdf409ae9111, type: 3}
       propertyPath: gameManager
       value: 

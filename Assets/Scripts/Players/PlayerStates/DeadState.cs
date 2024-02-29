@@ -17,6 +17,7 @@ public class DeadState : MonoBehaviour
             playerMovement.enabled = false;
         }
         gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+        //gameObject.GetComponent<SpriteRenderer>().color.grayscale.Equals(true);
         gameManager.NewDead();
     }
 
@@ -32,5 +33,8 @@ public class DeadState : MonoBehaviour
         {
             gameManager.NewAlive();
         }
+
+        //gameObject.GetComponent<SpriteRenderer>().color.grayscale.Equals(false);
+        gameManager.NewAlive();
     }
 }

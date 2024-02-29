@@ -199,7 +199,7 @@ MonoBehaviour:
   taggerState: {fileID: 787575114032993236}
   runnerState: {fileID: 3196420473096096474}
   deadState: {fileID: 8585146832506875801}
-  levelManager: {fileID: 0}
+  gameManager: {fileID: 0}
   playerMovement: {fileID: 8155981292094251581}
 --- !u!114 &348979065908613462
 MonoBehaviour:
@@ -215,6 +215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 787575114032993236}
   currentState: {fileID: 0}
+  states:
+  - {fileID: 787575114032993236}
+  - {fileID: 3196420473096096474}
+  - {fileID: 8585146832506875801}
 --- !u!114 &787575114032993236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60f051341ceab741a4a6156fa91ce6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
 --- !u!114 &8585146832506875801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,5 +257,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c28f374dba5f44fbdc0bb83ae5fc99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelManager: {fileID: 0}
+  gameManager: {fileID: 0}
   playerMovement: {fileID: 8155981292094251581}
