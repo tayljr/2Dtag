@@ -9,9 +9,12 @@ public class DeadState : MonoBehaviour
 {
 	public GameManager gameManager;
     public MonoBehaviour playerMovement;
+    private Color myColor;
+    
     // Start is called before the first frame update
     void OnEnable()
     {
+	    myColor = gameObject.GetComponent<SpriteRenderer>().color;
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
@@ -33,7 +36,13 @@ public class DeadState : MonoBehaviour
         {
             gameManager.NewAlive();
         }
+        
+        if (playerMovement != null)
+        {
+	        playerMovement.enabled = true;
+        }
 
+        gameObject.GetComponent<SpriteRenderer>().color = myColor;
         //gameObject.GetComponent<SpriteRenderer>().color.grayscale.Equals(false);
         gameManager.NewAlive();
     }

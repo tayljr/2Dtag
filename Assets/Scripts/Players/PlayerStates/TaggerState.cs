@@ -6,20 +6,23 @@ using UnityEngine;
 
 public class TaggerState : MonoBehaviour
 {
-    public GameObject weapon;
+    public GameObject weaponPrefab;
+    private GameObject myWeapon;
     
     // Start is called before the first frame update
     void OnEnable()
     {
+	    myWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        weapon.transform.position = gameObject.transform.position;
+        myWeapon.transform.position = gameObject.transform.position;
     }
 
     private void OnDisable()
     {
+	    Destroy(myWeapon);
     }
 }

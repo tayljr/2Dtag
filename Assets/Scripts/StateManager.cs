@@ -7,7 +7,6 @@ public class StateManager : MonoBehaviour
 	//make base state class
     public MonoBehaviour startingState;
     public MonoBehaviour currentState;
-
     public List<MonoBehaviour> states;
  
     // Set a default state
