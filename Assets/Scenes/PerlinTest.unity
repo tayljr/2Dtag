@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 841797048}
   - component: {fileID: 841797047}
   - component: {fileID: 841797049}
+  - component: {fileID: 841797050}
   m_Layer: 0
   m_Name: PerlinManager
   m_TagString: Untagged
@@ -423,12 +424,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86d8687e7756d846bdc8e85ae01de78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perlin1D: 0
+  perlin2D: 0
+  perlin3D: 0
   areaLength: 50
+  areaHeight: 50
   areaWidth: 50
   prefabCube: {fileID: 1725812092}
-  yOffset: 1
-  wavelength: 2
-  amplitude: 10
+  offset: 1
+  wavelength: 20
+  amplitude: 1
+  update: 0
 --- !u!4 &841797048
 Transform:
   m_ObjectHideFlags: 0
@@ -451,7 +457,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 841797046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 817490c457b648b46a9836271dc2b14a, type: 3}
   m_Name: 
@@ -461,6 +467,29 @@ MonoBehaviour:
   yOffset: 1
   wavelength: 2
   amplitude: 10
+--- !u!114 &841797050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841797046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd5ca9fad022e0f478f9aec79a6b006d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabGround: {fileID: 90868968}
+  areaLength: 50
+  areaWidth: 50
+  squareSize: 0.1
+  xWavelength: 15
+  yWavelength: 15
+  xOffset: 1
+  yOffset: 1
+  amplitude: 1
+  invert: 0
+  update: 0
 --- !u!1 &1725812092
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 
 [CustomEditor(typeof(StateManager))]
 public class StateManager_Editor : Editor
@@ -10,7 +10,6 @@ public class StateManager_Editor : Editor
 	{
 		base.OnInspectorGUI();
 		{
-			base.OnInspectorGUI();
 			StateManager stateManager = target as StateManager;
 			foreach (var state in stateManager.states)
 			{
