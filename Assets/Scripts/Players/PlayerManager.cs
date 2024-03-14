@@ -16,18 +16,24 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-	    gameManager.LevelStart += StartGame;
-	    gameManager.TaggerWonEvent += TaggerWon;
-	    gameManager.RunnerWonEvent += RunnerWon;
+	    if (gameManager != null)
+	    {
+		    gameManager.LevelStartEvent += StartEventGame;
+		    gameManager.TaggerWonEvent += TaggerWon;
+		    gameManager.RunnerWonEvent += RunnerWon;
+	    }
     }
     void OnDisable()
     {
-	    gameManager.LevelStart -= StartGame;
-	    gameManager.TaggerWonEvent -= TaggerWon;
-	    gameManager.RunnerWonEvent -= RunnerWon;
+	    if (gameManager != null)
+	    {
+		    gameManager.LevelStartEvent -= StartEventGame;
+		    gameManager.TaggerWonEvent -= TaggerWon;
+		    gameManager.RunnerWonEvent -= RunnerWon;
+	    }
     }
 
-    private void StartGame()
+    private void StartEventGame()
     {
 	    gameManager.SetPlayers(gameObject);
     }

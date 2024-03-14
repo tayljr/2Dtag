@@ -181,10 +181,6 @@ MonoBehaviour:
   jumpingPower: 40
   isAlive: 1
   rb: {fileID: 1579513470072214398}
-  upKey: 119
-  downKey: 115
-  leftKey: 97
-  rightKey: 100
 --- !u!114 &1170199301273682928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f739447163f45848804d8f394c9ad09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 787575114032993236}
+  startingState: {fileID: 3196420473096096474}
   currentState: {fileID: 0}
   states:
   - {fileID: 787575114032993236}
@@ -284,7 +280,19 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb73b7bd-55b7-4ee2-b812-26a7791a8260
+    m_ActionName: Main/Horizontal[/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/j,/Keyboard/l,/Keyboard/numpad4,/Keyboard/numpad6]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0c5e2a80-0b63-41a0-9940-36259d88332c
+    m_ActionName: Main/Jump[/Keyboard/w,/Keyboard/upArrow,/Keyboard/i,/Keyboard/numpad8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8bcd6363-0965-4d61-be25-0a4413ca7b03
+    m_ActionName: Menu/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Main

@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class GameManager : FunctionManager
 {
@@ -16,19 +20,26 @@ public class GameManager : FunctionManager
     public TimerManager timerManger;
     public MonoBehaviour timerOnState;
 	public MonoBehaviour timerOffState;
+
+	private PlayerInput playerInput;
 	
-	public event SimpleEvent LevelStart;
-	//public event BoolReturnEvent SetTagger;
+	public event SimpleEvent LevelStartEvent;
+	//public event BoolReturnEvent SetTaggerEvent;
 	public event SimpleEvent TaggerWonEvent;
 	public event SimpleEvent RunnerWonEvent;
-	public event SimpleEvent PauseGame;
-	public event SimpleEvent PlayGame;
-	
-    // Start is called before the first frame update
+	public event SimpleEvent PauseGameEvent;
+	public event SimpleEvent PlayGameEvent;
+
+	private void Awake()
+	{
+		DontDestroyOnLoad(gameObject);
+	}
+
+	// Start is called before the first frame update
     void Start()
     {
 	    playersDead = 0;
-	    LevelStart?.Invoke();
+	    LevelStartEvent?.Invoke();
 	    
 	    //somehow in playerManger.StartGame()
 	    //players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
@@ -55,24 +66,24 @@ public class GameManager : FunctionManager
 	    }
     }
 
+
     // Update is called once per frame
     void Update()
     {
 	    if(!hasWon)
 	    {
 		    WinCheck();
-	    }    
+	    }
     }
-    
     
     public void GamePause()
     {
-	    PauseGame?.Invoke();
+	    PauseGameEvent?.Invoke();
     }
     
     public void GamePlay()
     {
-	    PlayGame?.Invoke();
+	    PlayGameEvent?.Invoke();
     }
 
 

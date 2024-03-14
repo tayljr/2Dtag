@@ -12,13 +12,13 @@ public class TimerManager : MonoBehaviour
     
     void OnEnable()
     {
-        gameManager.PauseGame += StopTimer;
-        gameManager.PlayGame += PlayTimer;
+        gameManager.PauseGameEvent += StopTimer;
+        gameManager.PlayGameEvent += PlayTimer;
     }
     void OnDisable()
     {
-        gameManager.PauseGame -= StopTimer;
-        gameManager.PlayGame -= PlayTimer;
+        gameManager.PauseGameEvent -= StopTimer;
+        gameManager.PlayGameEvent -= PlayTimer;
     }
 
     public void StartTimer(int setTime)

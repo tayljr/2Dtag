@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private MainControlls mainControls;
 
-    public KeyCode upKey = KeyCode.W;
-    public KeyCode downKey = KeyCode.S;
-    public KeyCode leftKey = KeyCode.A;
-    public KeyCode rightKey = KeyCode.D;
+    //public KeyCode upKey = KeyCode.W;
+    //public KeyCode downKey = KeyCode.S;
+    //public KeyCode leftKey = KeyCode.A;
+    //public KeyCode rightKey = KeyCode.D;
 
     private void Awake()
     {

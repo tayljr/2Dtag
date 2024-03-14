@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class PerlinGround : MonoBehaviour
 {
+	public bool moving = false;
 	public int groundLength = 100;
 	public GameObject groundPrefab;
 	[FormerlySerializedAs("startY")]
@@ -17,13 +18,21 @@ public class PerlinGround : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetTerrain();
     }
 
     // Update is called once per frame
     void Update()
     {
-	    
+	    if(moving)
+	    {
+		    yOffset += 0.5f * Time.deltaTime;
+		    SetTerrain();
+	    }
+    }
+
+    public void SetTerrain()
+    {
 	    if(spawnedSquares != null)
 	    {
 		    foreach (GameObject square in spawnedSquares)
