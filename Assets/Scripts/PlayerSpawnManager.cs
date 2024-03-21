@@ -6,40 +6,26 @@ using static UnityEngine.InputSystem.Keyboard;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
-    public PlayerInputManager playerInputManager;
-    private List<GameObject> activePlayers;
-    public GameObject playerPrefab;
+    public GameObject playerPrefab; // Reference to the player prefab
+    public Transform spawnPoint; // The point where players will spawn
+    private int currentPlayerIndex; // Track the current player index
     
-    private MainControlls mainControls;
+    private PlayerInputManager playerInputManager;
     private void Awake()
     {
-        //mainControls = new MainControlls();
-        //mainControls.Enable();
-
-        //PlayerInput player1 = PlayerInput.Instantiate(playerPrefab, controlScheme: "Keyboard1", pairWithDevice: Keyboard.current);
-        //var p1 = PlayerInput.Instantiate(playerPrefab, controlScheme: "Keyboard2");
     }
     private void OnEnable()
     {
-        //mainControls.Main.Jump.performed += NewPlayer;
-        //playerInputManager.onPlayerJoined += PlayerJoined;
-    }
-
-    private void PlayerJoined(PlayerInput obj)
-    {
-        //obj.SwitchCurrentControlScheme("Keyboard1");
+        playerInputManager.onPlayerJoined += NewPlayer;
     }
 
     private void OnDisable()
     {
-        //mainControls.Main.Jump.performed -= NewPlayer;
-        //playerInputManager.onPlayerJoined += PlayerJoined;
+        playerInputManager.onPlayerJoined -= NewPlayer;
 
     }
     
-    private void NewPlayer(InputAction.CallbackContext obj)
+    private void NewPlayer(PlayerInput playerInput)
     {
-       //Debug.Log(obj);
     }
-// need to detect what button was used to spawn the player
 }

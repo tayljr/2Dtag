@@ -1,78 +1,115 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 8f;
     public float jumpingPower = 18f;
-    private bool isMoving = false;
-    private bool isRight = true;
     private float direction = 0;
-    
-    public bool isAlive = true;
-    
+    public float groundHeight = 0.2f;
+    public GameObject groundCheck;
     public Rigidbody2D rb;
-    private MainControlls mainControls;
+    public SpriteRenderer spriteRenderer;
+    private float slopeAngle;
 
-    //public KeyCode upKey = KeyCode.W;
-    //public KeyCode downKey = KeyCode.S;
-    //public KeyCode leftKey = KeyCode.A;
-    //public KeyCode rightKey = KeyCode.D;
-
-    private void Awake()
-    {
-        mainControls = new MainControlls();
-        mainControls.Enable();
-    }
-
-    private void OnEnable()
-    {
-        mainControls.Main.Horizontal.performed += HorizontalOnPerfirmed;
-        mainControls.Main.Horizontal.canceled += HorizontalOnPerfirmed;
-        mainControls.Main.Jump.performed += VerticalOnPerfirmed;
-        mainControls.Main.Jump.canceled += VerticalOnPerfirmed;
-    }
     
-    private void OnDisable()
-    {
-        mainControls.Main.Horizontal.performed -= HorizontalOnPerfirmed;
-        mainControls.Main.Horizontal.canceled -= HorizontalOnPerfirmed;
-        mainControls.Main.Jump.performed -= VerticalOnPerfirmed;
-        mainControls.Main.Jump.canceled -= VerticalOnPerfirmed;
-    }
-
+    //https://www.youtube.com/watch?v=DrFk5Q_IwG0
+    [FormerlySerializedAs("stepRayLower")] public GameObject stepRay;
+    public float stepHeight = 0.5f;
+    public float stepSmooth = 1.5f;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rb.velocity = new Vector2(speed * direction, rb.velocity.y);
-    }
-    private void HorizontalOnPerfirmed(InputAction.CallbackContext obj)
-    {
-        direction = obj.ReadValue<float>();
+        
+        slopeAngle = GetSlopeAngle();
+        //Debug.Log(slopeAngle);
+        
+        //if not on a slope
+        if (slopeAngle <= 0)
+        {
+            StepClimb();
+        }
     }
     
-    private void VerticalOnPerfirmed(InputAction.CallbackContext obj)
+    public void SetHorizontalInput(float input)
     {
-        if (obj.performed)
+        direction = input;
+        if (direction < 0)
         {
-            if(IsGrounded()){
-                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-            }
-        }else if (!obj.performed)
+            spriteRenderer.flipY = true;
+        } else if (direction > 0)
         {
-            if(rb.velocity.y > 0f){
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.25f);
-            }
+            spriteRenderer.flipY = false;
         }
-        
     }
 
-    private bool IsGrounded()
+    public void OnJumpInput()
     {
-        return rb.velocity.y < 0.001f && rb.velocity.y > -0.001f;
+        // if is grounded 
+        if (slopeAngle != -1)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        }
+    }
+
+    public void OnJumpInputCanceled()
+    {
+        if (rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.25f);
+        }
+    }
+    
+    
+    //is grounded plus slope angle returns a -1 if the player is not grounded
+    private float GetSlopeAngle()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(groundCheck.transform.position, new Vector2(1.15f, 0.1f), 0f, Vector2.down, groundHeight);
+        Color rayColor;
+        if (raycastHit.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(groundCheck.transform.position + new Vector3(1.15f / 2, 0), Vector2.down * (0.1f + groundHeight), rayColor);
+        Debug.DrawRay(groundCheck.transform.position - new Vector3(1.15f / 2, 0), Vector2.down * (0.1f + groundHeight), rayColor);
+        Debug.DrawRay(groundCheck.transform.position - new Vector3(1.15f / 2, 0.1f + groundHeight), Vector2.right * (1.15f), rayColor);
+        if (raycastHit.collider != null)
+        {
+            return Vector2.Angle(raycastHit.normal, Vector2.up);
+        }
+        return -1;
+    }
+
+    private void StepClimb()
+    {
+        RaycastHit2D hitLower = Physics2D.Raycast(new Vector2(stepRay.transform.position.x, stepRay.transform.position.y), Vector2.right * direction, 1f);
+        Color lowerColour;
+        if (hitLower.collider != null)
+        {
+            float stepTop = hitLower.collider.bounds.max.y;
+            lowerColour = Color.blue;
+            float heightDifference = stepTop - stepRay.transform.position.y;
+            if (heightDifference <= stepHeight)
+            {
+                lowerColour = Color.green;
+                float requiredVelocity = Mathf.Sqrt(2 * rb.gravityScale * heightDifference);
+                rb.velocity = new Vector3(rb.velocity.x,  rb.velocity.y + requiredVelocity + stepSmooth);
+            }
+        }
+        else
+        {
+            lowerColour = Color.red;
+        }
+        Debug.DrawRay(new Vector2(stepRay.transform.position.x, stepRay.transform.position.y), Vector2.right * (direction * 1f), lowerColour);
     }
 }
