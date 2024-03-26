@@ -27,7 +27,7 @@ public class RunnerState : MonoBehaviour
     {
         if (other == weapon && this.enabled)
         {
-            gameObject.GetComponent<PlayerManager>().BecomeDead();
+            gameObject.GetComponent<PlayerModel>().BecomeDead();
         }
     }
 }

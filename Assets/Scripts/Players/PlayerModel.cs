@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerModel : MonoBehaviour
 {
     public MonoBehaviour taggerState;
     public MonoBehaviour runnerState;
@@ -12,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     //public LevelManager levelManager;
     public GameManager gameManager;
     public PlayerMovement playerMovement;
+
+    public TextMeshProUGUI nameTag;
     
     // Start is called before the first frame update
     void OnEnable()
@@ -52,6 +55,11 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public void SetName(string newName)
+    {
+	    nameTag.text = newName;
+    }
+    
     public void BecomeTagger()
     {
         gameObject.GetComponent<StateManager>().ChangeState(taggerState);

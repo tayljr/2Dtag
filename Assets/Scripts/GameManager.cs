@@ -54,13 +54,13 @@ public class GameManager : FunctionManager
 	    if (players.Count != 0)
 	    {
 		    //players[currentTagger].transform.position = taggerSpawn.position;
-		    players[currentTagger].GetComponent<PlayerManager>().BecomeTagger();
+		    players[currentTagger].GetComponent<PlayerModel>().BecomeTagger();
 		    for (int i = 0; i < players.Count; i++)
 		    {
 				SpawnPlayers(i);
 			    if (i != currentTagger)
 			    {
-				    players[i].GetComponent<PlayerManager>().BecomeRunner();
+				    players[i].GetComponent<PlayerModel>().BecomeRunner();
 			    }
 		    }
 	    }

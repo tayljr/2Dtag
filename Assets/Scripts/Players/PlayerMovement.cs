@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     
     //https://www.youtube.com/watch?v=DrFk5Q_IwG0
-    [FormerlySerializedAs("stepRayLower")] public GameObject stepRay;
+    public GameObject stepRay;
     public float stepHeight = 0.5f;
-    public float stepSmooth = 1.5f;
+    public float stepPower = 1.5f;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -102,8 +102,10 @@ public class PlayerMovement : MonoBehaviour
             if (heightDifference <= stepHeight)
             {
                 lowerColour = Color.green;
+                
+                //velocity required to reach a certain height (square root of 2 x gravity x the height) 
                 float requiredVelocity = Mathf.Sqrt(2 * rb.gravityScale * heightDifference);
-                rb.velocity = new Vector3(rb.velocity.x,  rb.velocity.y + requiredVelocity + stepSmooth);
+                rb.velocity = new Vector3(rb.velocity.x, (rb.velocity.y + requiredVelocity) * stepPower);
             }
         }
         else
