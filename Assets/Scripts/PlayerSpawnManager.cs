@@ -11,7 +11,7 @@ public class PlayerSpawnManager : MonoBehaviour
 {
     public Transform spawnPoint; // The point where players will spawn
     private int currentPlayerIndex;
-    private List<PlayerInput> players;
+    public List<PlayerInput> players;
     public PlayerInputManager playerInputManager;
     public GameObject nameInput;
     public TMP_InputField userInput;
