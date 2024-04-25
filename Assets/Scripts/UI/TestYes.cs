@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestYes : MonoBehaviour, IActionable
+public class TestYes : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,13 +16,20 @@ public class TestYes : MonoBehaviour, IActionable
         
     }
 
-    public void Activate()
+    public void Activate(bool on)
     {
-	    gameObject.SetActive(true);
+	    if(on)
+	    {
+		    Debug.Log("yes");
+	    }
+	    else
+	    {
+		    Debug.Log("no");
+	    }
     }
 
     public void Deactivate()
     {
-	    gameObject.SetActive(false);
+	    Debug.Log("no");
     }
 }
