@@ -15,6 +15,7 @@ public class PlayerModel : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public TextMeshProUGUI nameTag;
+    public SpriteRenderer mySprite;
     
     // Start is called before the first frame update
     void OnEnable()
@@ -58,6 +59,11 @@ public class PlayerModel : MonoBehaviour
     public void SetName(string newName)
     {
 	    nameTag.text = newName;
+    }
+
+    public void SetColour(Color newColour)
+    {
+	    mySprite.color = newColour;
     }
     
     public void BecomeTagger()

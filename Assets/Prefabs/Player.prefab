@@ -160,6 +160,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   playerMovement: {fileID: 7338988286040778089}
   nameTag: {fileID: 3590958706100916717}
+  mySprite: {fileID: 8345070781833100997}
 --- !u!114 &6800021205822081549
 MonoBehaviour:
   m_ObjectHideFlags: 0

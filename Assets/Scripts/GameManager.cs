@@ -43,7 +43,7 @@ public class GameManager : FunctionManager
 	    
 	    //somehow in playerManger.StartGame()
 	    //players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-	    
+	    //
 	    if(activeSpawns != null)
 	    {
 		    activeSpawns.Clear();
@@ -57,7 +57,7 @@ public class GameManager : FunctionManager
 		    players[currentTagger].GetComponent<PlayerModel>().BecomeTagger();
 		    for (int i = 0; i < players.Count; i++)
 		    {
-				SpawnPlayers(i);
+				//SpawnPlayers(i);
 			    if (i != currentTagger)
 			    {
 				    players[i].GetComponent<PlayerModel>().BecomeRunner();
@@ -92,6 +92,8 @@ public class GameManager : FunctionManager
 	    players.Add(newPlayer);
     }
     
+    
+    //dont think i need this anymore
     private void SpawnPlayers(int currentPlayer)
     {
 		currentSpawn = Random.Range(0, players.Count);

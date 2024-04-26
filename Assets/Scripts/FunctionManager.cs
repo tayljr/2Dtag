@@ -12,7 +12,8 @@ public class FunctionManager : MonoBehaviour
         Debug.Log(nextLevel);
         if (nextLevel != SceneManager.GetActiveScene().buildIndex)
         {
-            SceneManager.LoadScene(nextLevel);
+            //SceneManager.LoadScene(nextLevel);
+            SceneManager.LoadScene(1);
         }
         else
         {

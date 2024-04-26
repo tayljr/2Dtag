@@ -5,6 +5,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -16,6 +17,7 @@ public class PlayerSpawnManager : FunctionManager
     private int currentSpawn;
     private int currentPlayerIndex;
     public List<PlayerInput> players;
+    public List<GameObject> playersGO;
     public PlayerInputManager playerInputManager;
     public GameObject nameInput;
     public GameObject startButton;
@@ -24,7 +26,10 @@ public class PlayerSpawnManager : FunctionManager
     public Transform playerList;
     private GameObject currentPlayerList;
     private int readyPlayers;
-    private List<string> playerNames;
+    private List<string> playerNames = new List<string>();
+    public List<Color> playerColors;
+    private List<string> playerControllerSchemes = new List<string>();
+    private bool inLobby;
 
     private void Awake()
     {
@@ -37,45 +42,66 @@ public class PlayerSpawnManager : FunctionManager
         nameInput.SetActive(false);
         startButton.SetActive(false);
         playerInputManager.onPlayerJoined += NewPlayer;
+        SceneManager.sceneLoaded += NewScene;
     }
+
 
     private void OnDisable()
     {
         playerInputManager.onPlayerJoined -= NewPlayer;
-        currentPlayerList.GetComponentInChildren<Toggle>().onValueChanged.RemoveAllListeners();
+        SceneManager.sceneLoaded -= NewScene;
+        //currentPlayerList.GetComponentInChildren<Toggle>().onValueChanged.RemoveAllListeners();
     }
 
     private void Start()
     {
+        
+    }
+
+    
+    //most likely won't spawn players at set locations due to not being able to get playerSpawns locations
+    //done i think
+    private void NewScene(Scene scene, LoadSceneMode mode)
+    {
         //when a level loads
-        if (players.Count != 0)
+        playerInputManager.joiningEnabled.Equals(players.Count == 0);
+        playerInputManager = FindObjectOfType<PlayerInputManager>();
+        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
-            playerInputManager.joiningEnabled.Equals(players.Count != 0);
+            inLobby = false;
+            playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
+            playerInputManager.notificationBehavior = PlayerNotifications.InvokeCSharpEvents;
+            playerInputManager.onPlayerJoined += NewPlayer;
+            PlayerSpawner[] findSpawns = FindObjectsOfType<PlayerSpawner>();
+            for (int i = 0; i < findSpawns.Length; i++)
+            {
+                playerSpawns.Add(findSpawns[i].gameObject.transform);
+            }
             for (int i = 0; i < players.Count; i++)
             {
+                currentPlayerIndex = i;
                 SpawnPlayers(i);
             }
         }
         else
         {
-            playerInputManager.joiningEnabled.Equals(true);
+            inLobby = true;
         }
     }
-
-    
-    //most likely won't spawn players at set locations due to not being able to get playerSpawns locations
     private void SpawnPlayers(int currentPlayer)
     {
         currentSpawn = Random.Range(0, players.Count);
-        if (activeSpawns == null)
+        if (activeSpawns.Count == 0)
         {
+            playerInputManager.JoinPlayer(currentPlayer, -1, playerControllerSchemes[currentPlayer]);
             //needs to instatiate new playes and give them the correct names and controll scheemes
-            players[currentPlayer].transform.position = playerSpawns[currentSpawn].position;
+            //Done i think
             activeSpawns.Add(playerSpawns[currentSpawn]);
         }
         else if(!activeSpawns.Contains(playerSpawns[currentSpawn]))
         {
-            players[currentPlayer].transform.position = playerSpawns[currentSpawn].position;
+            //TODO NOT CALLING THE EVENT/SPAWNING THE PLAYER!!!!
+            playerInputManager.JoinPlayer(currentPlayer, -1, playerControllerSchemes[currentPlayer]);
             activeSpawns.Add(playerSpawns[currentSpawn]);
         }
         else
@@ -86,14 +112,26 @@ public class PlayerSpawnManager : FunctionManager
     
     private void NewPlayer(PlayerInput playerInput)
     {
-        playerInputManager.DisableJoining();
-        userInput.text = "";
-        nameInput.SetActive(true);
-        //Debug.Log(playerInput);
-        players.Add(playerInput);
-        foreach (PlayerInput player in players)
+        if(inLobby)
         {
-            player.SwitchCurrentActionMap("Menu");
+            playerInputManager.DisableJoining();
+            userInput.text = "";
+            nameInput.SetActive(true);
+            //Debug.Log(playerInput);
+            players.Add(playerInput);
+            playerControllerSchemes.Add((playerInput.currentControlScheme));
+            players[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(playerColors[currentPlayerIndex]);
+            foreach (PlayerInput player in players)
+            {
+                player.SwitchCurrentActionMap("Menu");
+            }
+        }
+        else
+        {
+            playersGO.Add(playerInput.gameObject);
+            playersGO[currentPlayerIndex].transform.position = playerSpawns[currentSpawn].position;
+            playersGO[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(playerColors[currentPlayerIndex]);
+            playersGO[currentPlayerIndex].GetComponent<PlayerModel>().SetName(playerNames[currentPlayerIndex]);
         }
     }
 
@@ -133,6 +171,6 @@ public class PlayerSpawnManager : FunctionManager
         {
             startButton.SetActive(false);
         }
-        Debug.Log(readyPlayers + " : " + players.Count);
+        //Debug.Log(readyPlayers + " : " + players.Count);
     }
 }

@@ -548,6 +548,17 @@ MonoBehaviour:
   userInput: {fileID: 1999204023}
   playerListPrefab: {fileID: 5485603856281110066, guid: e0b341236c347c04aab9262f9c4d8b30, type: 3}
   playerList: {fileID: 1415269327}
+  playerColors:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.5, b: 0, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0.5, g: 0, b: 0.5, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
 --- !u!4 &919439164
 Transform:
   m_ObjectHideFlags: 0
