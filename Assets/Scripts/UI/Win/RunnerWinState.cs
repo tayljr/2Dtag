@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RunnerWinState : MonoBehaviour
+public class RunnerWinState : StateBase
 {
 	public GameObject runnerWinMenu;
-	void OnEnable()
+
+	public override void Enter()
 	{
+		base.Enter();
 		runnerWinMenu.SetActive(true);
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Execute()
 	{
-	    
+		base.Execute();
 	}
 
-	void OnDisable()
+	public override void Exit()
 	{
-	    
+		base.Exit();
 	}
+	
 }

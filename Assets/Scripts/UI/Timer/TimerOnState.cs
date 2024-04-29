@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TimerOnState : MonoBehaviour
+public class TimerOnState : StateBase
 {
 	public GameObject timer;
 	void OnEnable()

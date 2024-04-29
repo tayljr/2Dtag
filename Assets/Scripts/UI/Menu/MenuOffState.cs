@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class MenuOffState : MonoBehaviour
+public class MenuOffState : StateBase
 {
 	public GameObject pauseMenu;
-	void OnEnable()
+	
+	public override void Enter()
 	{
+		base.Enter();
 		pauseMenu.SetActive(false);
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Execute()
 	{
-        
+		base.Execute();
 	}
 
-	void OnDisable()
+	public override void Exit()
 	{
-
+		base.Exit();
 	}
 }

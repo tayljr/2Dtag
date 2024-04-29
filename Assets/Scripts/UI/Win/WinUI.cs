@@ -6,14 +6,16 @@ using UnityEngine.Serialization;
 
 public class WinUI : MonoBehaviour
 {
-	public MonoBehaviour taggerWonState;
-	public MonoBehaviour runnerWinState;
+	public StateBase taggerWonState;
+	public StateBase runnerWinState;
 	public GameManager gameManager;
 	public StateManager stateManager;
 	
     // Start is called before the first frame update
     void OnEnable()
     {
+	    gameManager = FindObjectOfType<GameManager>();
+	    stateManager = GetComponent<StateManager>();
 	    gameManager.TaggerWonEvent += TaggerWon;
 	    gameManager.RunnerWonEvent += RunnerWon;
     }

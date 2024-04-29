@@ -8,17 +8,22 @@ public class FunctionManager : MonoBehaviour
     private int nextLevel;
     public void LoadLevel()
     {
-        nextLevel = Random.Range(1, SceneManager.sceneCountInBuildSettings);
+        nextLevel = Random.Range(2, SceneManager.sceneCountInBuildSettings);
         Debug.Log(nextLevel);
         if (nextLevel != SceneManager.GetActiveScene().buildIndex)
         {
             //SceneManager.LoadScene(nextLevel);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         else
         {
             LoadLevel();
         } 
+    }
+
+    public void LoadLobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     public void QuitToMenu()

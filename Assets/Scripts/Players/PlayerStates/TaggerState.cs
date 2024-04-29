@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class TaggerState : MonoBehaviour
+public class TaggerState : StateBase
 {
     public GameObject weaponPrefab;
     private GameObject myWeapon;
     
-    // Start is called before the first frame update
-    void OnEnable()
+    public override void Enter()
     {
-	    myWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        base.Enter();
+        myWeapon = Instantiate(weaponPrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Execute()
     {
+        base.Execute();
         myWeapon.transform.position = gameObject.transform.position;
     }
 
-    private void OnDisable()
+    public override void Exit()
     {
-	    Destroy(myWeapon);
+        base.Exit();
+        Destroy(myWeapon);
     }
 }

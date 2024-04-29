@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,20 @@ using UnityEngine;
 public class MenuController : MonoBehaviour
 {
     public GameManager gameManager;
-    public MonoBehaviour menuOnState;
-    public MonoBehaviour menuOffState;
-    public MonoBehaviour optionsOnState;
-    public MonoBehaviour optionsOffState;
+    public StateManager stateManager;
+    public StateBase menuOnState;
+    public StateBase menuOffState;
+    public StateBase optionsOnState;
+    public StateBase optionsOffState;
     private bool menuOn = false;
     private bool optionsOn = false;
-    
+
+    private void OnEnable()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+        stateManager = GetComponent<StateManager>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -24,14 +32,14 @@ public class MenuController : MonoBehaviour
     {
             if (!menuOn)
             {
-                GetComponent<StateManager>().ChangeState(menuOnState);
+                stateManager.ChangeState(menuOnState);
                 gameManager?.GamePause();
                 menuOn = true;
             } 
             else if (menuOn)
             {
-                GetComponent<StateManager>().ChangeState(optionsOffState);
-                GetComponent<StateManager>().ChangeState(menuOffState);
+                stateManager.ChangeState(optionsOffState);
+                stateManager.ChangeState(menuOffState);
                 gameManager?.GamePlay();
                 menuOn = false;
             }
@@ -41,14 +49,14 @@ public class MenuController : MonoBehaviour
     {
         if (!optionsOn)
         {
-            GetComponent<StateManager>().ChangeState(menuOffState);
-            GetComponent<StateManager>().ChangeState(optionsOnState);
+            stateManager.ChangeState(menuOffState);
+            stateManager.ChangeState(optionsOnState);
             optionsOn = true;
         }
         else if (optionsOn)
         {
-            GetComponent<StateManager>().ChangeState(menuOnState);
-            GetComponent<StateManager>().ChangeState(optionsOffState);
+            stateManager.ChangeState(menuOnState);
+            stateManager.ChangeState(optionsOffState);
             optionsOn = false;
         }
     }

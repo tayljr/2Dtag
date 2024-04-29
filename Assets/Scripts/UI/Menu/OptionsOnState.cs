@@ -4,22 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class optionsOnState : MonoBehaviour
+public class optionsOnState : StateBase
 {
 	public GameObject optionsMenu;
-    void OnEnable()
+
+    public override void Enter()
     {
+	    base.Enter();
 	    optionsMenu.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Execute()
     {
-	    
+	    base.Execute();
     }
 
-    void OnDisable()
+    public override void Exit()
     {
-	    
+	    base.Exit();
     }
 }

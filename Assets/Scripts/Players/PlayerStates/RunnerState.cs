@@ -4,28 +4,32 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RunnerState : MonoBehaviour
+public class RunnerState : StateBase
 {
 	public Collider2D weapon;
+    private bool active = true;
     
-    // Start is called before the first frame update
-    void OnEnable()
+    public override void Enter()
     {
+      	base.Enter();
+        active = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Execute()
     {
-        
+      base.Execute();
     }
 
-    private void OnDisable()
+    public override void Exit()
     {
+      base.Exit();
+      active = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other == weapon && this.enabled)
+        weapon = FindObjectOfType<Weapon>().gameObject.GetComponent<Collider2D>();
+        if (other == weapon && active)
         {
             gameObject.GetComponent<PlayerModel>().BecomeDead();
         }

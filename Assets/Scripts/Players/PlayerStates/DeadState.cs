@@ -5,33 +5,37 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DeadState : MonoBehaviour
+public class DeadState : StateBase
 {
 	public GameManager gameManager;
     public MonoBehaviour playerMovement;
+    public SpriteRenderer mySprite;
     private Color myColor;
     
-    // Start is called before the first frame update
-    void OnEnable()
+    public override void Enter()
     {
-	    myColor = gameObject.GetComponent<SpriteRenderer>().color;
+        base.Enter();
+        gameManager = FindObjectOfType<GameManager>();
+	    myColor = mySprite.color;
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
         }
-        gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-        //gameObject.GetComponent<SpriteRenderer>().color.grayscale.Equals(true);
-        gameManager.NewDead();
+        mySprite.color = Color.gray;
+        if (gameManager != null)
+        {
+            gameManager.NewDead();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Execute()
     {
-        
+        base.Execute();
     }
 
-    private void OnDisable()
+    public override void Exit()
     {
+        base.Exit();
         if (gameManager != null)
         {
             gameManager.NewAlive();
@@ -42,8 +46,6 @@ public class DeadState : MonoBehaviour
 	        playerMovement.enabled = true;
         }
 
-        gameObject.GetComponent<SpriteRenderer>().color = myColor;
-        //gameObject.GetComponent<SpriteRenderer>().color.grayscale.Equals(false);
-        gameManager.NewAlive();
+        mySprite.color = myColor;
     }
 }

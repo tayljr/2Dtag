@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TaggerWonState : MonoBehaviour
+public class TaggerWonState : StateBase
 {
 	public GameObject taggerWinMenu;
-	void OnEnable()
+
+	public override void Enter()
 	{
+		base.Enter();
 		taggerWinMenu.SetActive(true);
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Execute()
 	{
-	    
+		base.Execute();
 	}
 
-	void OnDisable()
+	public override void Exit()
 	{
-	    
+		base.Exit();
 	}
 }

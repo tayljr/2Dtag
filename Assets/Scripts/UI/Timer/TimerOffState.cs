@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerOffState : MonoBehaviour
+public class TimerOffState : StateBase
 {
 	public GameObject timer;
-	void OnEnable()
+
+	public override void Enter()
 	{
-		
+		base.Enter();
 	}
 
-	// Update is called once per frame
-	void Update()
+	public override void Execute()
 	{
-        
+		base.Execute();
 	}
 
-	void OnDisable()
+	public override void Exit()
 	{
-
+		base.Exit();
 	}
 }

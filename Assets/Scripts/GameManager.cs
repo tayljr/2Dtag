@@ -10,10 +10,6 @@ public class GameManager : FunctionManager
 {
     public List<GameObject> players;
     private int currentTagger;
-    public List<Transform> runnerSpawns;
-    public List<Transform> activeSpawns;
-    private int currentSpawn;
-	public Transform taggerSpawn;
 	public int time = 30;
 	private int playersDead = 0;
     private bool hasWon = false;
@@ -32,22 +28,15 @@ public class GameManager : FunctionManager
 
 	private void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
+		
 	}
 
 	// Start is called before the first frame update
-    void Start()
+    public void PlayersLoaded()
     {
 	    playersDead = 0;
 	    LevelStartEvent?.Invoke();
 	    
-	    //somehow in playerManger.StartGame()
-	    //players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
-	    //
-	    if(activeSpawns != null)
-	    {
-		    activeSpawns.Clear();
-	    }
 	    currentTagger = Random.Range(0,players.Count);
 	    //print(players[currentTagger]);
 	    timerManger.StartTimer(time);
@@ -92,26 +81,6 @@ public class GameManager : FunctionManager
 	    players.Add(newPlayer);
     }
     
-    
-    //dont think i need this anymore
-    private void SpawnPlayers(int currentPlayer)
-    {
-		currentSpawn = Random.Range(0, players.Count);
-		if (activeSpawns == null)
-		{
-			players[currentPlayer].transform.position = runnerSpawns[currentSpawn].position;
-			activeSpawns.Add(runnerSpawns[currentSpawn]);
-		}
-		else if(!activeSpawns.Contains(runnerSpawns[currentSpawn]))
-		{
-			players[currentPlayer].transform.position = runnerSpawns[currentSpawn].position;
-			activeSpawns.Add(runnerSpawns[currentSpawn]);
-		}
-		else
-		{
-			SpawnPlayers(currentPlayer);
-		}
-    }
     public void NewDead()
     {
 	    playersDead++;
@@ -132,7 +101,7 @@ public class GameManager : FunctionManager
 		    //tagger win event
 		    TaggerWonEvent?.Invoke();
 	    }
-	    if (gameObject.GetComponent<TimerManager>().TimerStatus())
+	    if (timerManger.TimerStatus())
 	    {
 		    //Debug.Log("Runners Has Won!");
 		    hasWon = true;

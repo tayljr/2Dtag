@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
 {
-    public MonoBehaviour taggerState;
-    public MonoBehaviour runnerState;
-    public MonoBehaviour deadState;
+	public StateManager stateManager;
+	
+    public StateBase taggerState;
+    public StateBase runnerState;
+    public StateBase deadState;
     
     //public LevelManager levelManager;
     public GameManager gameManager;
@@ -20,6 +22,8 @@ public class PlayerModel : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
+	    stateManager = GetComponent<StateManager>();
+	    gameManager = FindObjectOfType<GameManager>();
 	    if (gameManager != null)
 	    {
 		    gameManager.LevelStartEvent += StartEventGame;

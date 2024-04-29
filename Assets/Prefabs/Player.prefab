@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 1055757410444447885}
   m_Layer: 2
   m_Name: Player_Model
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40c1b490dd67fd47a0899ec3a14abb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateManager: {fileID: 0}
   taggerState: {fileID: 2208017665669219184}
   runnerState: {fileID: 7674315949757960151}
   deadState: {fileID: 4937210537028502821}
@@ -219,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   playerMovement: {fileID: 7338988286040778089}
+  mySprite: {fileID: 8345070781833100997}
 --- !u!114 &2172832515616425051
 MonoBehaviour:
   m_ObjectHideFlags: 0

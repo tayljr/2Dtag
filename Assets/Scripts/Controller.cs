@@ -61,19 +61,19 @@ public class ControllerActionMapTest : MonoBehaviour
    private void HorizontalOnperformed(InputAction.CallbackContext obj)
    {
 	   // Note: How did I know this is a float? Because in the ActionMap editor the 'Action Type' is set to 'Value' and the 'Control Type' is set to 'Axis'
-	   Debug.Log(obj.ReadValue<float>());
+	   //Debug.Log(obj.ReadValue<float>());
    }
    
    private void VerticalOnperformed(InputAction.CallbackContext obj)
    {
 	   // Note: How did I know this is a float? Because in the ActionMap editor the 'Action Type' is set to 'Value' and the 'Control Type' is set to 'Axis'
-       Debug.Log(obj.performed);
+       //Debug.Log(obj.performed);
    }
   
    private void MovementOnperformed(InputAction.CallbackContext obj)
    {
        // Note: How did I know this is a Vector2? Because in the ActionMap editor the 'Action Type' is set to 'Value' and the 'Control Type' is set to 'Vector2'
-       Debug.Log(obj.ReadValue<Vector2>());
+       //Debug.Log(obj.ReadValue<Vector2>());
    }
 
 
@@ -82,11 +82,11 @@ public class ControllerActionMapTest : MonoBehaviour
        // I'm checking whether it was pressed or released
        if (obj.phase == InputActionPhase.Performed)
        {
-          Debug.Log("JUMP!");
+          //Debug.Log("JUMP!");
        }
        if (obj.phase == InputActionPhase.Canceled)
        {
-          Debug.Log("Cancelled JUMP!");
+          //Debug.Log("Cancelled JUMP!");
        }
    }
 }
