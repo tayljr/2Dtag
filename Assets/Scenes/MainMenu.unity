@@ -602,6 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  stateManager: {fileID: 0}
   menuOnState: {fileID: 1060631250}
   menuOffState: {fileID: 1060631249}
   optionsOnState: {fileID: 1060631248}
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 1060631250}
   currentState: {fileID: 0}
+  states: []
 --- !u!4 &1060631252
 Transform:
   m_ObjectHideFlags: 0
@@ -1721,7 +1723,7 @@ PrefabInstance:
       objectReference: {fileID: 1060631253}
     - target: {fileID: 3869369303068388053, guid: 555a7b6650a8e34459005b33a153e292, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: LoadLobby
       objectReference: {fileID: 0}
     - target: {fileID: 3869369303068388053, guid: 555a7b6650a8e34459005b33a153e292, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

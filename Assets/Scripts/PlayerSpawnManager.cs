@@ -12,6 +12,12 @@ using Random = UnityEngine.Random;
 
 public class PlayerSpawnManager : FunctionManager
 {
+    private static PlayerSpawnManager _instance;
+    public static PlayerSpawnManager Instance
+    {
+        get { return _instance; }
+    }
+
     public List<Transform> playerSpawns; // The points where players will spawn
     public List<Transform> activeSpawns;
     private int currentSpawn;
@@ -33,7 +39,13 @@ public class PlayerSpawnManager : FunctionManager
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (_instance != null && _instance != this) 
+        { 
+            Destroy(this.gameObject);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnEnable()
@@ -90,6 +102,7 @@ public class PlayerSpawnManager : FunctionManager
         else
         {
             inLobby = true;
+            playerNames.Clear();
             playerSpawns.Clear();
             activeSpawns.Clear();
             currentSpawn = 0;
@@ -97,7 +110,6 @@ public class PlayerSpawnManager : FunctionManager
             players.Clear();
             playersGO.Clear();
             readyPlayers = 0;
-            playerNames.Clear();
             playerControllerSchemes.Clear();
         }
     }
