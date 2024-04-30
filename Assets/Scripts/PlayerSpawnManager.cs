@@ -12,12 +12,6 @@ using Random = UnityEngine.Random;
 
 public class PlayerSpawnManager : FunctionManager
 {
-    private static PlayerSpawnManager _instance;
-    public static PlayerSpawnManager Instance
-    {
-        get { return _instance; }
-    }
-
     public List<Transform> playerSpawns; // The points where players will spawn
     public List<Transform> activeSpawns;
     private int currentSpawn;
@@ -39,13 +33,7 @@ public class PlayerSpawnManager : FunctionManager
 
     private void Awake()
     {
-        if (_instance != null && _instance != this) 
-        { 
-            Destroy(this.gameObject);
-            return;
-        }
-        _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -77,8 +65,7 @@ public class PlayerSpawnManager : FunctionManager
         //when a level loads
         playerInputManager.joiningEnabled.Equals(players.Count == 0);
         playerInputManager = FindObjectOfType<PlayerInputManager>();
-        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) &&
-            !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
+        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
             inLobby = false;
             playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
@@ -96,7 +83,6 @@ public class PlayerSpawnManager : FunctionManager
                 currentPlayerIndex = i;
                 SpawnPlayers(i);
             }
-
             FindObjectOfType<GameManager>().PlayersLoaded();
         }
         else
