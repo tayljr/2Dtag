@@ -218,6 +218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  _hueShiftSpeed: 0.05
+  _saturation: 1
+  _value: 0.5
   time: 30
   timerManger: {fileID: 596946604139114067}
   timerOnState: {fileID: 2911555869786204150}

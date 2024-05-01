@@ -106,7 +106,7 @@ MonoBehaviour:
       remapped: 62
     - original: 37
       remapped: 63
-  - name: ijkl
+  - name: IJKL
     routes:
     - original: 15
       remapped: 24

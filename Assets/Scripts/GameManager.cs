@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,10 @@ using Random = UnityEngine.Random;
 public class GameManager : FunctionManager
 {
     public List<GameObject> players;
+    private Camera mainCamera;
+    [SerializeField] private float _hueShiftSpeed = 0.2f;
+    [SerializeField, Range(0,1)] private float _saturation = 1f;
+    [SerializeField, Range(0,1)] private float _value = 1f;
     private int currentTagger;
 	public int time = 30;
 	private int playersDead = 0;
@@ -28,6 +33,7 @@ public class GameManager : FunctionManager
 
 	private void Awake()
 	{
+	    mainCamera = Camera.main;
 		
 	}
 
@@ -63,6 +69,24 @@ public class GameManager : FunctionManager
 	    {
 		    WinCheck();
 	    }
+
+	    float amountToShift = _hueShiftSpeed * Time.deltaTime;
+	    Color newColor = ShiftHueBy(mainCamera.backgroundColor, amountToShift);
+	    mainCamera.backgroundColor = newColor;
+    }
+ 
+    private Color ShiftHueBy(Color color, float amount)
+    {
+	    // convert from RGB to HSV
+	    Color.RGBToHSV(color, out float hue, out float sat, out float val);
+ 
+	    // shift hue by amount
+	    hue += amount;
+	    sat = _saturation;
+	    val = _value;
+ 
+	    // convert back to RGB and return the color
+	    return Color.HSVToRGB(hue, sat, val);
     }
     
     public void GamePause()

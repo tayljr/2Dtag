@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class ShiftObject : MonoBehaviour, IActionable
 {
+	private SpriteRenderer sprite;
+
+	private BoxCollider2D collision;
+
+	private bool isActive = true;
+	
     // Start is called before the first frame update
     void Start()
     {
-        
+	    sprite = GetComponent<SpriteRenderer>();
+	    collision = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -18,11 +25,29 @@ public class ShiftObject : MonoBehaviour, IActionable
 
     public void Activate()
     {
-	    gameObject.SetActive(!gameObject.activeSelf);
+	    Shift();
     }
 
     public void Deactivate()
     {
-	    gameObject.SetActive(!gameObject.activeSelf);
+	    Shift();
+    }
+
+    private void Shift()
+    {
+	    isActive = !isActive;
+	    collision.enabled = isActive;
+	    if (isActive)
+	    {
+		    Color tmp = sprite.color;
+		    tmp.a = 0.75f;
+		    sprite.color = tmp;
+	    }
+	    else
+	    {
+		    Color tmp = sprite.color;
+		    tmp.a = 0.05f;
+		    sprite.color = tmp;
+	    }
     }
 }

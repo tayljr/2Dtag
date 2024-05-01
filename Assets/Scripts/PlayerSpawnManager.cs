@@ -7,9 +7,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using InputDevice = UnityEngine.XR.InputDevice;
 using Random = UnityEngine.Random;
+using Toggle = UnityEngine.UI.Toggle;
 
 public class PlayerSpawnManager : FunctionManager
 {
@@ -17,7 +18,7 @@ public class PlayerSpawnManager : FunctionManager
     public List<Transform> activeSpawns;
     private int currentSpawn;
     private int currentPlayerIndex;
-    private int currentKeyboardIndex;
+    // private int currentKeyboardIndex;
     public List<PlayerInput> players;
     public List<GameObject> playersGO;
     public PlayerInputManager playerInputManager;
@@ -29,12 +30,13 @@ public class PlayerSpawnManager : FunctionManager
     private GameObject currentPlayerList;
     private int readyPlayers;
     private List<string> playerNames = new List<string>();
-    public List<Color> playerColors;
+    private List<int> playerColours = new List<int>();
+    // public List<Color> playerColors;
     private List<string> playerControllerSchemes = new List<string>();
-    private List<UnityEngine.InputSystem.InputDevice> playerDevices = new List<UnityEngine.InputSystem.InputDevice>();
+    // private List<string> playerDevices = new List<string>();
     private bool inLobby;
-    private PlayerInput currentPlayerInput;
-    //private KeyboardSplitter keyboardSplitter;
+    // private PlayerInput currentPlayerInput;
+    // private KeyboardSplitter keyboardSplitter;
 
     private void Awake()
     {
@@ -44,7 +46,7 @@ public class PlayerSpawnManager : FunctionManager
     private void OnEnable()
     {
         currentPlayerIndex = 0;
-        currentKeyboardIndex = 0;
+        // currentKeyboardIndex = 0;
         nameInput.SetActive(false);
         startButton.SetActive(false);
         playerInputManager.onPlayerJoined += NewPlayer;
@@ -67,8 +69,7 @@ public class PlayerSpawnManager : FunctionManager
 
     private void OldScene(Scene scene)
     {
-        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) &&
-            !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
+        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
             Destroy(gameObject);
         }
@@ -81,7 +82,7 @@ public class PlayerSpawnManager : FunctionManager
         //when a level loads
         playerInputManager.joiningEnabled.Equals(players.Count == 0);
         playerInputManager = FindObjectOfType<PlayerInputManager>();
-        //keyboardSplitter = FindObjectOfType<KeyboardSplitter>();
+        // keyboardSplitter = FindObjectOfType<KeyboardSplitter>();
         if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
             inLobby = false;
@@ -95,7 +96,7 @@ public class PlayerSpawnManager : FunctionManager
             }
 
             activeSpawns.Clear();
-            currentKeyboardIndex = 0;
+            // currentKeyboardIndex = 0;
             for (int i = 0; i < players.Count; i++)
             {
                 currentPlayerIndex = i;
@@ -112,7 +113,7 @@ public class PlayerSpawnManager : FunctionManager
             activeSpawns.Clear();
             currentSpawn = 0;
             currentPlayerIndex = 0;
-            currentKeyboardIndex = 0;
+            // currentKeyboardIndex = 0;
             players.Clear();
             playersGO.Clear();
             readyPlayers = 0;
@@ -129,13 +130,7 @@ public class PlayerSpawnManager : FunctionManager
         currentSpawn = Random.Range(0, players.Count);
         if (activeSpawns.Count == 0)
         {
-            playerInputManager.JoinPlayer(currentPlayer, -1, playerControllerSchemes[currentPlayerIndex], playerDevices[currentPlayerIndex]);
-            
-            if (playerControllerSchemes[currentPlayer] == "Keyboard")
-            {
-                //keyboardSplitter.players[currentKeyboardIndex].name = playerDevices[currentKeyboardIndex];
-                currentKeyboardIndex++;
-            }
+            playerInputManager.JoinPlayer(currentPlayer, -1, playerControllerSchemes[currentPlayerIndex]);
             //needs to instatiate new playes and give them the correct names and controll scheemes
             //Done i think
             activeSpawns.Add(playerSpawns[currentSpawn]);
@@ -156,19 +151,23 @@ public class PlayerSpawnManager : FunctionManager
         if (inLobby)
         {
             playerInputManager.DisableJoining();
-            userInput.text = "";
+            userInput.text = "Player " + (currentPlayerIndex + 1);
             nameInput.SetActive(true);
+            nameInput.GetComponentInChildren<TMP_InputField>().ActivateInputField();
             //Debug.Log(playerInput);
             players.Add(playerInput);
             playerControllerSchemes.Add((playerInput.currentControlScheme));
-            currentPlayerInput = playerInput;
-            if (playerInput.currentControlScheme == "Keyboard")
-            {
-                //playerDevices.Add(keyboardSplitter.players[currentKeyboardIndex].name);
-                Debug.Log(playerInput.devices[0]);
-                currentKeyboardIndex++;
-            }
-            players[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(playerColors[currentPlayerIndex]);
+            // currentPlayerInput = playerInput;
+            // if (playerInput.currentControlScheme == "Keyboard")
+            // {
+            //     string device = playerInput.devices[0].ToString();
+            //     string keyboard = "Keyboard:/";
+            //     device = device.Replace(keyboard, "");
+            //     playerDevices.Add(device);
+            //     Debug.Log(playerInput.devices[0]);
+            //     currentKeyboardIndex++;
+            // }
+            players[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(currentPlayerIndex);
             foreach (PlayerInput player in players)
             {
                 player.SwitchCurrentActionMap("Menu");
@@ -178,8 +177,13 @@ public class PlayerSpawnManager : FunctionManager
         else
         {
             playersGO.Add(playerInput.gameObject);
+            // if (playerControllerSchemes[currentPlayerIndex] == "Keyboard")
+            // {
+            //     keyboardSplitter.players[currentKeyboardIndex].routes[0].remapped = 
+            //     currentKeyboardIndex++;
+            // }
             playersGO[currentPlayerIndex].transform.position = playerSpawns[currentSpawn].position;
-            playersGO[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(playerColors[currentPlayerIndex]);
+            playersGO[currentPlayerIndex].GetComponent<PlayerModel>().SetColour(playerColours[currentPlayerIndex]);
             playersGO[currentPlayerIndex].GetComponent<PlayerModel>().SetName(playerNames[currentPlayerIndex]);
             //playersGO[currentPlayerIndex].GetComponent<PlayerInput>().SwitchCurrentControlScheme(playerControllerSchemes[currentPlayerIndex], playerDevices[currentPlayerIndex]);
         }
@@ -190,21 +194,23 @@ public class PlayerSpawnManager : FunctionManager
         playerInputManager.EnableJoining();
         nameInput.SetActive(false);
         //Debug.Log(userInput.text);
-        players[currentPlayerIndex].GetComponent<PlayerModel>().SetName(userInput.text);
+        
+        //set name returns that players current colour int
+        playerColours.Add(players[currentPlayerIndex].GetComponent<PlayerModel>().SetName(userInput.text));
         currentPlayerList = Instantiate(playerListPrefab, playerList);
         currentPlayerList.GetComponentInChildren<TextMeshProUGUI>().text = userInput.text;
         playerNames.Add(userInput.text);
-        playerDevices.Add(currentPlayerInput.devices[0]);
+        //playerDevices.Add(currentPlayerInput.devices[0]);
         foreach (PlayerInput player in players)
         {
             player.SwitchCurrentActionMap("Main");
         }
 
-        currentPlayerList.GetComponentInChildren<Toggle>().onValueChanged.AddListener(newReady);
+        currentPlayerList.GetComponentInChildren<Toggle>().onValueChanged.AddListener(NewReady);
         currentPlayerIndex++;
     }
 
-    private void newReady(bool ready)
+    private void NewReady(bool ready)
     {
         if (ready)
         {
@@ -230,5 +236,10 @@ public class PlayerSpawnManager : FunctionManager
             startButton.SetActive(false);
         }
         //Debug.Log(readyPlayers + " : " + players.Count);
+    }
+
+    public void NextColour()
+    {
+        players[currentPlayerIndex].GetComponent<PlayerModel>().NextColour();
     }
 }
