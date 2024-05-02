@@ -8,7 +8,7 @@ public class ToggleObject : MonoBehaviour, IActionable
 
 	private BoxCollider2D collision;
 
-	private bool isActive = true;
+	[SerializeField] private bool isActive = true;
 	
 	//private bool isActive;
     // Start is called before the first frame update

@@ -9,10 +9,13 @@ public class FunctionManager : MonoBehaviour
     public void LoadLevel()
     {
         nextLevel = Random.Range(2, SceneManager.sceneCountInBuildSettings);
-        Debug.Log(nextLevel);
+        //Debug.Log(nextLevel);
         if (nextLevel != SceneManager.GetActiveScene().buildIndex)
         {
+            //load random level
             SceneManager.LoadScene(nextLevel);
+            
+            //load specific scene
             //SceneManager.LoadScene(2);
         }
         else

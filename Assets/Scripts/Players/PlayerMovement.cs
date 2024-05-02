@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(groundCheck.transform.position, new Vector2(1.15f, 0.1f), 0f, Vector2.down, groundHeight);
         Color rayColor;
-        if (raycastHit.collider != null)
+        if (raycastHit.collider != null && raycastHit.collider.gameObject != gameObject)
         {
             rayColor = Color.green;
         }
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(groundCheck.transform.position + new Vector3(1.15f / 2, 0), Vector2.down * (0.1f + groundHeight), rayColor);
         Debug.DrawRay(groundCheck.transform.position - new Vector3(1.15f / 2, 0), Vector2.down * (0.1f + groundHeight), rayColor);
         Debug.DrawRay(groundCheck.transform.position - new Vector3(1.15f / 2, 0.1f + groundHeight), Vector2.right * (1.15f), rayColor);
-        if (raycastHit.collider != null)
+        if (raycastHit.collider != null && raycastHit.collider.gameObject != gameObject)
         {
             return Vector2.Angle(raycastHit.normal, Vector2.up);
         }

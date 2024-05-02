@@ -275,8 +275,8 @@ Transform:
   m_GameObject: {fileID: 216770384}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7069818, w: 0.7072319}
-  m_LocalPosition: {x: 16.191557, y: 0.114246845, z: -0.1252166}
-  m_LocalScale: {x: 23.6, y: 1, z: 1}
+  m_LocalPosition: {x: 48.3468, y: 1.1975, z: -0.1252166}
+  m_LocalScale: {x: 38.992653, y: 65.311, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445014831}
@@ -452,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1e80d0feb6d88489baa7c69a1a5098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!1 &415206717 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4661812448335885106, guid: d37931e2729dfd943845412743b33692, type: 3}
@@ -1063,8 +1064,8 @@ Transform:
   m_GameObject: {fileID: 545251488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7069818, w: 0.7072319}
-  m_LocalPosition: {x: -18.808443, y: -0.88575315, z: -0.1252166}
-  m_LocalScale: {x: 23.6, y: 1, z: 1}
+  m_LocalPosition: {x: -65.4839, y: 0.1695, z: -0.1252166}
+  m_LocalScale: {x: 39.385284, y: 94.3501, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445014831}
@@ -1555,8 +1556,8 @@ Transform:
   m_GameObject: {fileID: 1059004274}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3084426, y: -10.885753, z: -0.1252166}
-  m_LocalScale: {x: 50, y: 1, z: 1}
+  m_LocalPosition: {x: -1.3084426, y: -14.8809, z: -0.1252166}
+  m_LocalScale: {x: 50, y: 8.9902, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445014831}
@@ -2416,8 +2417,8 @@ Transform:
   m_GameObject: {fileID: 1395632095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3084426, y: 9.114246, z: -0.1252166}
-  m_LocalScale: {x: 50, y: 1, z: 1}
+  m_LocalPosition: {x: -1.3084426, y: 14.2787, z: -0.1252166}
+  m_LocalScale: {x: 50, y: 11.3288, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 445014831}
@@ -2992,6 +2993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1e80d0feb6d88489baa7c69a1a5098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!1 &1797697698
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,6 +3573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1e80d0feb6d88489baa7c69a1a5098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!1 &1931153641
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3671,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1288224373}
+    - target: {fileID: 1778858523066459072, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420029}
+    - target: {fileID: 1778858523066459072, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
     - target: {fileID: 2105787217002995899, guid: d37931e2729dfd943845412743b33692, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3772,6 +3783,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1824658433}
+    - target: {fileID: 8825965535011640753, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420029}
+    - target: {fileID: 8825965535011640753, guid: d37931e2729dfd943845412743b33692, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

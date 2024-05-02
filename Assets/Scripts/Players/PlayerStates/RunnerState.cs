@@ -29,7 +29,7 @@ public class RunnerState : StateBase
     private void OnTriggerEnter2D(Collider2D other)
     {
         weapon = FindObjectOfType<Weapon>().gameObject.GetComponent<Collider2D>();
-        if (other == weapon && active)
+        if (weapon != null && other == weapon && active)
         {
             gameObject.GetComponent<PlayerModel>().BecomeDead();
         }

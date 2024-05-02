@@ -17,7 +17,9 @@ public class PlayerSpawnManager : FunctionManager
     public List<Transform> playerSpawns; // The points where players will spawn
     public List<Transform> activeSpawns;
     private int currentSpawn;
+
     private int currentPlayerIndex;
+
     // private int currentKeyboardIndex;
     public List<PlayerInput> players;
     public List<GameObject> playersGO;
@@ -30,9 +32,12 @@ public class PlayerSpawnManager : FunctionManager
     private GameObject currentPlayerList;
     private int readyPlayers;
     private List<string> playerNames = new List<string>();
+
     private List<int> playerColours = new List<int>();
+
     // public List<Color> playerColors;
     private List<string> playerControllerSchemes = new List<string>();
+
     // private List<string> playerDevices = new List<string>();
     private bool inLobby;
     // private PlayerInput currentPlayerInput;
@@ -45,11 +50,19 @@ public class PlayerSpawnManager : FunctionManager
 
     private void OnEnable()
     {
+        if (playerInputManager == null)
+        {
+            playerInputManager = FindObjectOfType<PlayerInputManager>();
+        }
+
         currentPlayerIndex = 0;
         // currentKeyboardIndex = 0;
         nameInput.SetActive(false);
         startButton.SetActive(false);
-        playerInputManager.onPlayerJoined += NewPlayer;
+        if (playerInputManager != null)
+        {
+            playerInputManager.onPlayerJoined += NewPlayer;
+        }
         SceneManager.sceneLoaded += NewScene;
         SceneManager.sceneUnloaded += OldScene;
     }
@@ -57,7 +70,10 @@ public class PlayerSpawnManager : FunctionManager
 
     private void OnDisable()
     {
-        playerInputManager.onPlayerJoined -= NewPlayer;
+        if (playerInputManager != null)
+        {
+            playerInputManager.onPlayerJoined -= NewPlayer;
+        }
         SceneManager.sceneLoaded -= NewScene;
         SceneManager.sceneUnloaded -= OldScene;
         //currentPlayerList.GetComponentInChildren<Toggle>().onValueChanged.RemoveAllListeners();
@@ -69,8 +85,22 @@ public class PlayerSpawnManager : FunctionManager
 
     private void OldScene(Scene scene)
     {
-        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
+        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) &&
+            !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
+            playerInputManager.onPlayerJoined -= NewPlayer;
+            SceneManager.sceneLoaded -= NewScene;
+            SceneManager.sceneUnloaded -= OldScene;
+            playerNames.Clear();
+            playerSpawns.Clear();
+            activeSpawns.Clear();
+            currentSpawn = 0;
+            currentPlayerIndex = 0;
+            // currentKeyboardIndex = 0;
+            players.Clear();
+            playersGO.Clear();
+            readyPlayers = 0;
+            playerControllerSchemes.Clear();
             Destroy(gameObject);
         }
     }
@@ -80,10 +110,19 @@ public class PlayerSpawnManager : FunctionManager
     private void NewScene(Scene scene, LoadSceneMode mode)
     {
         //when a level loads
-        playerInputManager.joiningEnabled.Equals(players.Count == 0);
-        playerInputManager = FindObjectOfType<PlayerInputManager>();
+        if (playerInputManager == null)
+        {
+            playerInputManager = FindObjectOfType<PlayerInputManager>();
+        }
+
+        if (playerInputManager != null)
+        {
+            playerInputManager.joiningEnabled.Equals(players.Count == 0);
+        }
+
         // keyboardSplitter = FindObjectOfType<KeyboardSplitter>();
-        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) && !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
+        if (!scene.Equals(SceneManager.GetSceneByName("Lobby")) &&
+            !scene.Equals(SceneManager.GetSceneByName("MainMenu")))
         {
             inLobby = false;
             playerInputManager.joinBehavior = PlayerJoinBehavior.JoinPlayersManually;
@@ -107,6 +146,11 @@ public class PlayerSpawnManager : FunctionManager
         }
         else if (scene.Equals(SceneManager.GetSceneByName("Lobby")))
         {
+            if (playerInputManager == null)
+            {
+                playerInputManager = GetComponent<PlayerInputManager>();
+            }
+
             inLobby = true;
             playerNames.Clear();
             playerSpawns.Clear();
@@ -172,6 +216,7 @@ public class PlayerSpawnManager : FunctionManager
             {
                 player.SwitchCurrentActionMap("Menu");
             }
+
             CheckReady();
         }
         else
@@ -194,7 +239,7 @@ public class PlayerSpawnManager : FunctionManager
         playerInputManager.EnableJoining();
         nameInput.SetActive(false);
         //Debug.Log(userInput.text);
-        
+
         //set name returns that players current colour int
         playerColours.Add(players[currentPlayerIndex].GetComponent<PlayerModel>().SetName(userInput.text));
         currentPlayerList = Instantiate(playerListPrefab, playerList);
@@ -220,6 +265,7 @@ public class PlayerSpawnManager : FunctionManager
         {
             readyPlayers--;
         }
+
         CheckReady();
     }
 
