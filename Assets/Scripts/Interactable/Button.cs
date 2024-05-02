@@ -42,7 +42,10 @@ public class Button : SerializedMonoBehaviour
 	    {
 		    foreach (var actionable in actionables)
 		    {
-			    actionable.Deactivate();
+			    if (actionable != null)
+			    {
+				    actionable.Deactivate();
+			    }
 		    }
 		    isActive = false;
 	    }
