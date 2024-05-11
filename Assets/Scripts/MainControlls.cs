@@ -48,7 +48,7 @@ public partial class @MainControlls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""1D Axis [keyboard]"",
                     ""id"": ""76fd328a-a3da-4f63-9d75-10a8c9055fad"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -81,7 +81,7 @@ public partial class @MainControlls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""1D Axis (Left Stick)"",
                     ""id"": ""2776ac9e-56a2-4acf-ae04-51ab7698a902"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -114,6 +114,39 @@ public partial class @MainControlls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""1D Axis (D-Pad)"",
+                    ""id"": ""6e4e455e-4c83-43b8-a946-b7f4b64d73c6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8c4e21e7-6b66-4820-a444-b8f919623597"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1cb111f4-a671-4fb9-a274-466918178021"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Horizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""4f33d808-cdf4-42e7-9ae6-3394d9240b13"",
                     ""path"": ""<Keyboard>/w"",
@@ -128,6 +161,17 @@ public partial class @MainControlls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""9da9692b-515d-4279-b059-b0c835068f4c"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f27493c7-0905-4b22-9c65-ade413982dc6"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
